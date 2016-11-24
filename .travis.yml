@@ -1,6 +1,7 @@
 language: swift # or objective-c
 osx_image: xcode8
 script:
-  - xcodebuild -scheme SwiftExample -workspace SwiftExample.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=10.1' build test
+  # - xcodebuild -scheme SwiftExample -workspace SwiftExample.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=10.1' build test
+  - set -o pipefail && xcodebuild clean build -workspace SwiftExample.xcworkspace -scheme 'SwiftExample' -sdk iphonesimulator PLATFORM_NAME=iphonesimulator -configuration Debug | xcpretty
 after_success:
   - bash <(curl -s https://codecov.io/bash)
